@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>About</title>
+{% endblock %}
+{% block content %}
+<div class="row bg-mycolor">
+    <div class="col-sm-12 text-center text-dark" style="font-family: 'Times New Roman', Times, serif;">
+        <h1><b class="text-light">--- OUR MISSION ---</b></h1>
+        <p><b>To provide Best Quality Products In Low Cast</b></p>
+    </div>
+</div>
+<div class="row bg-dark" style="height: 2px;"></div>
+<div class="col-sm-12 bg-dark-subtle"></div>
+<div class="row bg-dark mt-1" style="height: 2px;"></div>
+<!-- about start -->
+<div class="row bg-mycolor">
+    <div class="col-sm-12 text-center text-light" style="font-family: 'Times New Roman', Times, serif;height: 500px;">
+        <img src="{% static 'images/r1.png' %}" alt="" class="h-25 mt-4">
+        <p class="text-lg-start text-dark"><b> Online shopping has become a major disruptor in the retail industry[3] as consumers can now search for product information and place product orders across different regions. Online retailers deliver their products directly to the consumers' home, offices, or wherever they want. The B2C (business to consumer) process has made it easy for consumers to select any product online from a retailer's website and to have it delivered relatively quickly. Using online shopping methods, consumers do not need to consume energy by physically visiting physical stores. This way they save time and the cost of traveling. A retailer or a shop is a business that presents a selection of goods and offers to trade or sell them to customers for money or other goods.
+            Shoppers' shopping experiences may vary. They are based on a variety of factors including how the customer is treated, convenience, the type of goods being purchased, and mood. <br></b></p>
+        <p class="text-start text-dark"><b>Some shops sell secondhand goods. Often the public can also sell goods to such shops. In other cases, especially in the case of a nonprofit shop, the public donates goods to these shops, commonly known as thrift stores in the United States, charity shops in the United Kingdom, or op shops in Australia and New Zealand. In give-away shops goods can be taken for free. In antique shops, the public can find goods that are older and harder to find. Sometimes people are broke and borrow money from a pawn shop using an item of value as collateral. College students are known to resell books back through college textbook bookstores. Old used items are often distributed through surplus store Various types of retail stores that specialize in the selling of goods related to a theme include bookstores, boutiques, candy shops, liquor stores, gift shops, hardware stores, hobby stores, pet stores, pharmacies, sex shops and supermarkets.</b></p>
+    </div>
+    <div class="row bg-dark" style="height: 2px;"></div>
+    <div class="col-sm-12 bg-dark-subtle"></div>
+    <div class="row bg-dark mt-1" style="height: 2px;"></div>
+<!-- about end -->
+<!-- start faculties -->
+<div class="row bg-mycolor">
+    <div class="col-sm-12 text-center text-dark" style="font-family: 'Times New Roman', Times, serif;">
+        <h1><b class="text-light">FACULTIES</b></h1>
+    </div>
+</div>
+<div class="row bg-mycolor text-dark">
+    <div class="col-sm-12" style="display: flex;">
+        {% for i in fdata %}
+        <div class="card m-1 bg-mycolor" style="width: 12rem;border: none;font-family: 'Times New Roman', Times, serif;">
+            <img src="/{{i.fpic}}" class="card-img-top p-1" alt="..." height="150px" style="border-radius: 40%;">
+            <div class="card-body">
+              <h5 class="card-title"><b>Er. {{i.fname}}</b></h5>
+              <p class="card-text text-light"><b>{{i.finformation}}</b></p>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+</div>
+    <!-- end faculties -->
+{% endblock %}

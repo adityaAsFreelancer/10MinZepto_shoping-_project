@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if not request.session.user %}
+<script>
+    alert('you have login first');
+    location.href='/user/signin';
+</script>
+{% endif %}
+<div class="text-center fs-2">
+    My <b class="text-warning">Order</b>
+</div>
+<!-- start pending order -->
+<div class="row mx-auto mb-1">
+    <div class="col-sm-10">
+        <div class="row bg-mycolor">
+            <div class="fs-3">Pending <b class="text-info"> Orders</b></div>
+            <div class="col-sm-10 mx-auto">
+                <!-- start card -->
+                {% for i in pdata %}
+                <div class="card mb-3" style="width: 800px;background-color: azure;">
+                    <div class="row g-0">
+                      <div class="col-md-3">
+                        <img src="/{{i.product_picture}}" class="img-fluid rounded-start" alt="..." style="height: 120px;width:120px;">
+                      </div>
+                      <div class="col-md-9">
+                        <div class="card-body">
+                          <table>
+                            <tr>
+                                <th class="ms-2">product Details</th>
+                                <th class="ms-2">Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Status</th>
+                                <th>order Date</th>
+                                <th>Cancel</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>{{i.product_name}}</b><br>
+                                    <small>{{i.pw}}</small>
+                                </td>
+                                <td>{{i.quantity}}</td>
+                                <td>{{i.total_price}}</td>
+                                <td><b class="badge bg-danger">{{i.status}}</b></td>
+                                <td>{{i.order_date}}</td>
+                                <td><a href="/user/orderitem?oid={{i.id}}" class="btn btn-sm btn-outline btn-danger bg-mycolor text-light">cancel Order</a></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- end  card -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+                <!-- end pending order -->
+                <!-- start accepted order -->
+                <div class="row mx-auto mb-1">
+                  <div class="col-sm-10">
+                      <div class="row bg-mycolor">
+                          <div class="fs-3">Accepted <b class="text-info"> Orders</b></div>
+                          <div class="col-sm-10 mx-auto">
+                              <!-- start card -->
+                              {% for i in adata %}
+                              <div class="card mb-3" style="width: 800px;background-color: azure;">
+                                  <div class="row g-0">
+                                    <div class="col-md-3">
+                                      <img src="/{{i.product_picture}}" class="img-fluid rounded-start" alt="..." style="height: 120px;width:120px;">
+                                    </div>
+                                    <div class="col-md-9">
+                                      <div class="card-body">
+                                        <table>
+                                          <tr>
+                                              <th class="ms-2">product Details</th>
+                                              <th class="ms-2">Quantity</th>
+                                              <th>Subtotal</th>
+                                              <th>Status</th>
+                                              <th>order Date</th>
+                                              <th>Cancel</th>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <b>{{i.product_name}}</b><br>
+                                                  <small>{{i.pw}}</small>
+                                              </td>
+                                              <td>{{i.quantity}}</td>
+                                              <td>{{i.total_price}}</td>
+                                              <td><b class="badge bg-danger">{{i.status}}</b></td>
+                                              <td>{{i.order_date}}</td>
+                                              <td><a href="/user/orderitem?oid={{i.id}}" class="btn btn-sm btn-outline btn-danger bg-mycolor text-light">cancel Order</a></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              <!-- end  card -->
+                              {% endfor %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                <!-- end accepted order -->
+
+                <!-- start deliverd order -->
+                <div class="row mx-auto mb-1">
+                  <div class="col-sm-10">
+                      <div class="row bg-mycolor">
+                          <div class="fs-3">Deliverd <b class="text-info"> Orders</b></div>
+                          <div class="col-sm-10 mx-auto">
+                              <!-- start card -->
+                              {% for i in ddata %}
+                              <div class="card mb-3" style="width: 800px;background-color: azure;">
+                                  <div class="row g-0">
+                                    <div class="col-md-3">
+                                      <img src="/{{i.product_picture}}" class="img-fluid rounded-start" alt="..." style="height: 120px;width:120px;">
+                                    </div>
+                                    <div class="col-md-9">
+                                      <div class="card-body">
+                                        <table>
+                                          <tr>
+                                              <th class="ms-2">product Details</th>
+                                              <th class="ms-2">Quantity</th>
+                                              <th>Subtotal</th>
+                                              <th>Status</th>
+                                              <th>order Date</th>
+                                              
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <b>{{i.product_name}}</b><br>
+                                                  <small>{{i.pw}}</small>
+                                              </td>
+                                              <td>{{i.quantity}}</td>
+                                              <td>{{i.total_price}}</td>
+                                              <td><b class="badge bg-danger">{{i.status}}</b></td>
+                                              <td>{{i.order_date}}</td>
+                                              
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              <!-- end  card -->
+                              {% endfor %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                <!-- end delivard order -->
+                
+{% endblock %}

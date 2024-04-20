@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .fa-sol
+    {
+        border: 1px solid green !important;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        color:green;
+        line-height: 40px;
+        margin-right: 20px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 2px 3px red;
+        margin-bottom: 10px;
+        background-color: aqua;
+    }
+    .form-control
+    {
+        height: 50px;
+        margin-bottom: .8%;
+    }
+    #uform
+    {
+        display: none;
+    }
+</style>
+<script>
+    function demo()
+    {
+    document.getElementById('uform').style.display="block";
+    }
+</script>
+<div class="row bg-dark">
+<div class="text-center fs-3 text-light" style="font-style: italic;">
+    My<b class="text-warning">Profile <i class="fa-solid fa-user"></i></b>
+</div>
+</div>
+{% if not request.session.user %}
+<script>
+    alert('You have to login first');
+    location.href="/user/signin/";
+</script>
+{% endif %}
+<div class="row bg-dark">
+    <div class="col-sm-8 mx-auto bg-mycolor">
+        <!-- my profile -->
+        {% for i in rdata %}
+        <div class="card mb-3 mt-3 ">
+            <div class="row g-0 rounded-5">
+              <div class="col-md-4">
+                <img src="/{{i.profile}}" class="img-fluid rounded-start h-100" alt="..." style="">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <p class="card-text ">
+                    <i class="fa-solid fa-user fa-sol"></i><b>{{i.sname}}</b>
+                    <br>
+                    <i class="fa-solid fa-envelopes-bulk fa-sol"></i><b>{{i.semail}}</b>
+                <br>
+                <i class="fa-solid fa-phone fa-sol"></i><b>{{i.smobile}}</b>
+                <br>
+                <i class="fa-solid fa-key fa-sol"></i><b>{{i.spassword}}</b>
+                <br>
+                <i class="fa-solid fa-location-dot fa-sol"></i><b>{{i.saddress}}</b>
+                <br>
+                <br>
+                <a href="#" onclick="demo()" class="btn btn-outline-warning text-light bg-mycolor">Edit my profile <i class="fa-solid fa-pen-to-square"></i></a>
+                <br>
+                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <!-- end profile -->
+    </div>
+</div>
+<div class="row bg-dark-subtle" id="uform">
+    <div class="col-sm-7 mx-auto">
+        <form action="" method="Post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Name: <input type="text" name="name" placeholder="name" class="form-control" required>
+            Mobile: <input type="number" name="mobile" placeholder="mob" class="form-control" required>
+            Password: <input type="password" name="pass" placeholder="password" class="form-control" required>
+            Profile pic: <input type="file" class="from-control" name="fu"><br>
+            Address:<textarea name="address" cols="30" rows="3" class="form-control" placeholder="Enter Address"></textarea>
+            <input type="submit" value="SAVE" class="btn bg-warning text-light">
+      </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Sign UP</title>
+{% endblock %}
+{% block content %}
+    <!-- start signup -->
+    <div class="row bg-mycolor mt-1">
+        <div class="col-sm-12" style="font-family: 'Times New Roman', Times, serif;">
+            <h1 class="text-center">SIGN <b class="text-light">UP <i class="fa-solid fa-lock"></i></b></h1>
+        </div>
+        <div class="row signup">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 sign-up">
+                    <div class="reg text-light" style="font-family: 'Times New Roman', Times, serif;">
+                        <form method="Post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <b>NAME:</b><b class="text-danger">*</b><br>
+                            <input type="text" placeholder="Enter your Name..." name="name" required class="form-control">
+                            <b>EMAIL:</b><b class="text-danger">*</b><br>
+                            <input type="email" placeholder="Enter your Email id..." name="email" required class="form-control">
+                            <b>MOBILE NO:</b><br>
+                            <input type="number" placeholder="Enter your mobile number..." name="mob" class="form-control">
+                            <b>PASSWORD:</b><b class="text-danger">*</b><br>
+                            <input type="password" placeholder="Enter your password..." name="pass" class="form-control">
+                            <b>PICTURE:</b><br>
+                            <input type="file" name="spic" required class="form-control">
+                            <b>ADDRESS:</b><b class="text-danger">*</b><br>
+                            <textarea name="address" cols="30" rows="3" class="form-control"></textarea>
+                            <input type="checkbox" required> <b>I accept the</b><a href=""><b class="text-light ">Terms of use & privacy policy</b></a>
+                            <input type="submit" value="SIGN UP" class="btn  bg-mycolor text-light">
+                        </form>
+                </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    <!-- end signup -->
+{% endblock %}

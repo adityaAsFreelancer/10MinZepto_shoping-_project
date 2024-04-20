@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Contact Us</title>
+{% endblock %}
+<style>
+</style>
+{% block content %}
+<div class="row bg-mycolor mt-1">
+    <div class="col-sm-12" style="font-family: 'Times New Roman', Times, serif;">
+        <h1 class="text-center">Contact <b class="text-light">Us <i class="fa-solid fa-phone-square text-light-emphasis"></i></b></h1>
+    </div>
+</div>
+<div class="row" style="font-family: 'Times New Roman', Times, serif;">
+    <div class="col-sm-6 bg-body-tertiary">
+        <div class="login mt-3 ms-3" style="width: 500px;"></div>
+        <form method="post">
+            {% csrf_token %}
+        <b>NAME:</b><b class="text-danger">*</b><br>
+        <input type="text" placeholder="Enter your Name..." name="name" required class="form-control"><br>
+        <b>EMAIL:</b><b class="text-danger">*</b><br>
+        <input type="email" placeholder="Enter your Email id..." name="email" required class="form-control"><br>
+        <b>MOBILE NO:</b><br>
+        <input type="number" placeholder="Enter your mobile number..." name="mob" class="form-control"><br>
+        <b>MESSAGE:</b><br>
+        <textarea cols="30" rows="3"  placeholder="Enter your message..." name="message" class="form-control"></textarea><br>
+        <input type="submit" value="SUBMIT" class="btn mb-4 bg-mycolor text-light">
+    </form>
+    </div>
+    <div class="col-sm-6 con-image">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="help text-light mt-3 ms-4">
+                    <h4><b>L O C A T I O N <i class="fa-solid fa-location-dot text-danger"></i></b></h4>
+                    <p>Plot No-43,Behind H.P Petrol Pump,Tedhi Puliya Ring Rd</p>
+                    <p><b class="text-danger">Closed</b>.Opens 10 am Tue</p>
+                    <h4><b>CONTACTS <i class="fa-solid fa-mobile-phone text-light"></i></b></h4>
+                    <a href="callto+6388541934" style="text-decoration: none;"><i class="fa-solid fa-phone"></i> <b class="text-light"> 6388541834</b></a><br>
+                    <a href="callto:8528118190" style="text-decoration: none;"><i class="fa-solid fa-phone"></i> <b class="text-light"> 8528118190</b></a><br>
+                    <a href="mailus:Aditya@gmail.com" style="text-decoration: none;"><i class="fa-solid fa-envelope"></i> <b class="text-light">Aditya@gmail.com</b></a><br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113914.85346208051!2d80.83818185848865!3d26.845067225399582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957e86a60747d%3A0x732a4b83cc5a158e!2z4KSf4KWH4KSV4KWN4KSq4KWA4KSy4KWHIOCkn-Clh-CkleCljeCkqOCli-CksuClieCknOClgCDgpKrgpY3gpLDgpL7gpIfgpLXgpYfgpJ8g4KSy4KS_4KSu4KS_4KSf4KWH4KSh!5e0!3m2!1shi!2sin!4v1694447494661!5m2!1shi!2sin" width="650" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

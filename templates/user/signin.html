@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>SignIn</title>
+{% endblock %}
+{% block content %}
+<style>
+    .msign
+    {
+        background-image: url("{% static 'images/img4.webp' %}");
+        background-size: 100% 100%;
+        background-color: aquamarine;
+    }
+    .inner-msign
+    {
+        background-image: url("{% static 'images/img1.webp' %}");
+        background-size: 100% 100%;
+        border-radius: 20px;
+        width: 400px;
+        padding-top: 30px;
+        opacity: .9;
+    }
+</style>
+    <!-- start signin -->
+    <div class="row bg-mycolor mt-1">
+        <div class="col-sm-12" style="font-family: 'Times New Roman', Times, serif;">
+            <h1 class="text-center">SIGN <b class="text-light">IN<i class="fa-solid fa-key text-dark"></i></b></h1>
+        </div>
+    </div>
+        <div class="row msign">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="margin: 10px auto;">
+                <div class="row">
+                    <div class="col-sm-12 inner-msign" style="font-family: 'Times New Roman', Times, serif; height: 300px;">
+                        <form method="post">
+                            {% csrf_token %}
+                        <b class="mt-2">Email:</b>
+                        <div class="input-group py-3">
+                            <i class="input-group-text"><i class="fa-solid fa-envelope text-dark"></i></i>
+                            <input type="email" name="email" placeholder="Enter your email" class="form-control" required>
+                        </div>
+                        <b>Password:</b>
+                        <div class="input-group py-3">
+                            <i class="input-group-text"><i class="fa-solid fa-key text-dark"></i></i>
+                            <input type="password" name="passwd" placeholder="Enter password" class="form-control" required>
+                        </div>
+                        <input type="submit" class="btn form-control bg-mycolor w-50 text-light">
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    <!-- start signin -->
+{% endblock %}

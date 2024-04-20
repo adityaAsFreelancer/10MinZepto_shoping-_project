@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- start slider -->
+<div class="row slider1 my-2" style="background: azure; font-size: 14px;">
+  <!-- start slider -->
+  <div class="col-sm-12">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExsampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/4.png' %}" class="d-block w-100" alt="..." style="height: 450px;">
+        </div>
+        {% for x in sdata %}
+        <div class="carousel-item">
+          <img src="/{{x.spic}}" class="d-block w-100" alt="..." style="height: 450px;">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- end slider -->
+</div>
+<!-- end slider row -->
+<!-- start offers -->
+<div class="row">
+  <div class="text-light bg-mycolor py-2 fs-2 text-center" style="font-family:'Times New Roman', Times, serif;font-style:italic">Today <b class="txt-mycolor">Offers</b><i class="fa-brands fa-shopify fs-3"></i></div>
+  </div>
+<div class="row my-2" style="background: azure;font-size: 12px;font-family: 'Times New Roman', Times, serif;">
+  <div class="col-sm-12" style="display: flex;">
+    {% for i in opdata %}
+  <div class="card mx-2" style="width: 10rem;">
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{i.total_discount}} %
+      <span class="visually-hidden">unread messages</span>
+    </span>
+    <img src="/{{i.ppic}}" class="card-img-top" alt="..." style="height: 110px;">
+    <div class="card-body bg-dark-subtle">
+      <h5 class="card-title">{{i.psubcategory}}</h5>
+      <b>{{i.product_quantity}}</b> || <s>{{i.price}}</s> <i class="fa-solid fa-indian-rupee-sign"></i> <b>{{i.discount_price}}</b>
+      <form action="/user/indexcart/">
+      <div class="input-group">
+        <b class="input-group-text"><i class="fa-solid fa-minus text-dark" onclick="funm{{i.id}}()"></i></b>
+        <input type="hidden" value="{{i.psubcategory}}" name="pname">
+      <input type="hidden" value="{{i.price}}" name="price">
+      <input type="hidden" value="{{i.ppic}}" name="ppic">
+      <input type="hidden" value="{{i.product_quantity}}" name="pw">  
+        <input type="text" name="qt" value="0" class="form-control fs-5 text-center" id="txtcard{{i.id}}" readonly>
+        <b class="input-group-text"><i class="fa-solid fa-plus text-dark" onclick="funp{{i.id}}()"></i></b>
+    </div>
+    <input type="submit" value="ORDER NOW" class="btn bg-mycolor text-light mt-1">
+  </form>
+  </div>
+  </div>
+  <script>
+    var i{{i.id}}=0;
+        var txtc{{i.id}}=document.getElementById("txtcard{{i.id}}")
+        function funp{{i.id}}()
+        {
+            i{{i.id}}++;
+            txtc{{i.id}}.value=i{{i.id}};
+        }
+        function funm{{i.id}}()
+        {
+            if(i{{i.id}}>0)
+        {
+            i{{i.id}}--;
+            txtc{{i.id}}.value=i{{i.id}};
+         }
+    }
+  </script>
+  {% endfor %}
+  </div>
+  </div>
+  
+<!-- end offers -->
+<!-- start category -->
+<div class="row categoty" style="height: 60px;">
+  <div class="text-light bg-mycolor py-2 fs-3 text-center" style="font-family: 'Times New Roman', Times, serif;font-style: italic;">Categories</div>
+</div>
+<div class="row my-2" style="background: azure;font-family: 'Times New Roman', Times, serif;">
+  <div class="col-sm-12" style="display: flex;">
+    {% for i in cdata %}
+    <div class="card ms-2" style="width: 10rem;">
+      <img src="/{{i.cpic}}" class="card-img-top" alt="..." style="height: 110px;">
+      <div class="card-body bg-dark-subtle">
+        <a href="/user/product?cid={{i.id}}"><h5 class="card-title">{{i.cname}}</h5></a>
+        <p class="card-text">
+          {{i.cdate}}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end category -->
+<!-- start product -->
+<div class="row">
+<div class="text-light bg-mycolor py-2 fs-2 text-center" style="font-family:'Times New Roman', Times, serif;font-style:italic">Products <i class="fa-brands fa-shopify fs-3"></i></div>
+</div>
+<div class="row my-2" style="background: azure;font-size: 12px;font-family: 'Times New Roman', Times, serif;">
+<div class="col-sm-12" style="display: flex;">
+  {% for i in pdata %}
+<div class="card ms-2" style="width: 10rem;">
+  <img src="/{{i.ppic}}" class="card-img-top" alt="..." style="height: 110px;">
+  <div class="card-body bg-dark-subtle">
+    <h5 class="card-title">{{i.psubcategory}}</h5>
+    <b>{{i.product_quantity}}</b> || <s>{{i.price}}</s> <i class="fa-solid fa-indian-rupee-sign"></i> <b>{{i.discount_price}}</b>
+    <form action="/user/indexcart/" method="get">
+    <div class="input-group">
+      <b class="input-group-text"><i class="fa-solid fa-minus text-dark" onclick="funm2{{i.id}}()"></i></b>
+      <input type="hidden" value="{{i.psubcategory}}" name="pname">
+      <input type="hidden" value="{{i.price}}" name="price">
+      <input type="hidden" value="{{i.ppic}}" name="ppic">
+      <input type="hidden" value="{{i.product_quantity}}" name="pw">
+      <input type="text" name="qt" value="0" class="form-control fs-5 text-center" id="txtcard2{{i.id}}" readonly>
+      <b class="input-group-text"><i class="fa-solid fa-plus text-dark" onclick="funp2{{i.id}}()"></i></b>
+  </div>
+  <input type="submit" value="ORDER NOW" class="btn bg-mycolor text-light mt-1">
+</form>
+</div>
+</div>
+<script>
+  var i2{{i.id}}=0;
+      var txtc2{{i.id}}=document.getElementById("txtcard2{{i.id}}")
+      function funp2{{i.id}}()
+      {
+          i2{{i.id}}++;
+          txtc2{{i.id}}.value=i2{{i.id}};
+      }
+      function funm2{{i.id}}()
+      {
+          if(i2{{i.id}}>0)
+      {
+          i2{{i.id}}--;
+          txtc2{{i.id}}.value=i2{{i.id}};
+       }
+  }
+</script>
+{% endfor %}
+</div>
+</div>
+<!-- end product -->
+{% endblock %}
+{% block title %}
+<title>index</title>
+{% endblock %}

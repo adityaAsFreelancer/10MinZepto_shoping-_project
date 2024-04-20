@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+{% block title %}
+    <title></title>
+{% endblock %}
+    <style>
+    :root{
+    --bgcolor:linear-gradient(230deg,#07F6AB,#DE6FD0);
+    --txtcolor:#07F6AB;
+    }
+    .bg-mycolor
+    {
+      background: var(--bgcolor)! important;
+    }
+    .txt-mycolor
+    {
+      color: var(--txtcolor)! important;
+    }
+    .atag
+    {
+      text-decoration: none;
+      align-items: center;
+      justify-content: space-evenly;
+      color: white;
+    }
+    .hadder
+  {
+    font-size: 20px;
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+  }
+  .fa-brands
+  {
+    font-size:20px;
+    margin-bottom: -10px;
+  }
+  .fa-solid
+  {
+    color: white;
+  }
+  .nav-logo
+  {
+    height: 50px;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .footer
+  {
+    height: 250px;
+  }
+  .con-image
+    {
+    background-image: url("{% static 'images/con1.webp' %}");
+    background-size: 100% 100%;
+    opacity: 0.8;
+    }
+    .signup
+    {
+      height: 600px;
+      background-image: url("{% static 'images/img2.webp' %}");
+      background-size: 100% 100%;
+      /* background:black; */
+      opacity: .7;
+    }
+    .sign-up
+    {
+      height: 500px;
+      width: 450px;
+      margin: 40px auto;
+      border: 1px solid white;
+      box-shadow: 1px 3px 3px 5px white;
+      background-image: url("{% static 'images/img2.webp' %}");
+      background-size: 100% 100%;
+    }
+    .reg
+    {
+      width: 350px;
+      background: transparent;
+      margin: 10px auto;
+    }
+    .menus:hover
+    {
+      background: dark;
+      color: white;
+      border: 1px solid white;
+      box-shadow: 0px 0px 2px 3px red;
+      border-radius: 10px;
+    }
+    </style>
+</head>
+<body style="font-family: 'Times New Roman', Times, serif;">
+        <div class="container-fluid">
+        <div class="row hadder bg-mycolor p-1">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <i class="fa-solid fa-phone"></i> <a href="" class="atag">91+1234566789</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <i class="fa-solid fa-envelope"></i> <a href="" class="atag">Aditya@gmail.com</a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12 text-light">
+              welcome in my webpage
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="menu-item">
+                <a href="#"><i class="fa-brands fa-square-instagram" style="color: white;"></i></a>
+                <a href="#"><i class="fa-brands fa-square-facebook" style="color:rgb(0, 162, 255);"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"  style="color:green;"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube" style="color: #e70619;"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter text-info"></i></a>
+              </div>
+            </div>
+        </div>
+      <!-- end menu -->
+      <!-- start hadder2 -->
+      <div class="row hadder2 bg-dark">
+        <div class="col-sm-3 fs-4 ms-2 text-light">
+            10 <b class="txt-mycolor">MIN ZEPTO <i class="fa-solid fa-laptop-file txt-mycolor"></i></b>
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-2" style="font-size: 20px;">
+          {% if request.session.user %}
+                            <a href="/user/myprofile/" style="text-decoration: none;">{{request.session.username}}<img src="/{{request.session.userpic}}" alt="" class="img-fluid ps-2" style="max-height: 30px;width: 50px;border-radius: 30%;"></a>
+                          {% else %}
+                            <a href="# " class="nav-link disabled">Default User<img src="{% static 'images/i.jpg' %}" alt="" class="img-fluid ps-2" style="max-height: 30px;"></a>
+                        {% endif %}
+        </div>
+        <div class="col-sm-2">
+          {% if request.session.user %}
+          <a href="/user/cartitems/" class="btn bg-mycolor text-light">Cart <i class="fa-solid fa-cart-shopping"></i>
+          <b class="badge text-bg-light">{{request.session.cartitems}}</b>
+          </a>
+          {% else %}
+          <a href="#" class="btn bg-mycolor text-light">Cart <i class="fa-solid fa-cart-shopping"></i>
+            <b class="badge text-bg-light">0</b>
+            </a>
+            {% endif %}
+        </div>
+      </div>
+      <!-- end hadder2 -->
+      <!-- start nav -->
+        <div class="row nav bg-mycolor">
+          <div class="col-sm-2">
+            <img src="{% static 'images/logo.png' %}" class="nav-logo">
+        </div>
+        <div class="col-sm-10 mx-auto text-light" style="font-family:'Times New Roman', Times, serif;align-items: center;font-size: 1.2rem;">
+            <!-- start menu -->
+            <nav class="navbar navbar-expand-lg" id="menu">
+                <div class="container-fluid">
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active txt-mycolor menus" aria-current="page" href="/user/home/" id="menu"><i class="fa-solid fa-house"></i> Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/about/" id="menu"><i class="fa-regular fa-address-book text-light"></i> About Us</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/product/" id="menu">
+                            <i class="fa-brands fa-product-hunt text-light"></i> Product</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/contact/" id="menu"><i class="fa-solid fa-phone"></i> Customer Support</a>
+                      </li>
+                <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/signup/" id="menu"><i class="fa-solid fa-lock"></i> Sign Up</a>
+                      </li>
+                      {% if request.session.user %}
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/signout/" id="menu"><i class="fa-solid fa-key"></i> Sign out</a>
+                      </li>
+                      {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/signin/" id="menu"><i class="fa-solid fa-key"></i> SignIn</a>
+                      </li>
+                      {% endif %}
+                      <li class="nav-item">
+                        <a class="nav-link txt-mycolor menus" href="/user/myprofile/" id="menu"><i class="fa-solid fa-user"></i> profile</a>
+                      </li>
+                      </ul>
+                  </div>
+                </div>
+              </nav>
+        </div>
+        </div>
+      <!-- end nav -->
+        {% block content %}
+        {% endblock %}
+      
+      <!-- start footer -->
+      <div class="row footer bg-mycolor">
+        <div class="col-sm-3">
+          <center style="text-align:center;font-family: 'Times New Roman', Times, serif;">
+            <a href="#" class="fs-2 text-light">Customer</a><br></center>
+            <center style="text-align: justify;margin-left: 100px;margin-top: 10px;font-family: 'Times New Roman', Times, serif;"><a href="#" class="fs-5 " style="text-decoration: none;">About Us</a><br>
+            <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Our services</a><br>
+            <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Privacy policy</a><br>
+            <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Customer Support</a><br>
+          </center>
+          </div>
+       <div class="col-sm-3" style="text-decoration: none;">
+        <center style="text-align:center;font-family: 'Times New Roman', Times, serif;">
+          <a href="#" class="fs-2 text-light">Get Help</a><br></center>
+          <center style="text-align: justify;margin-left: 100px;margin-top: 10px;font-family: 'Times New Roman', Times, serif;"><a href="#" class="fs-5 " style="text-decoration: none;">FAQ</a><br>
+          <a href="#" class="fs-5 mt-2"  style="text-decoration: none;">Shipping</a><br>
+          <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Returns</a><br>
+          <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Order Status</a><br>
+          <a href="#" class="fs-5 mt-2" style="text-decoration: none;"> Payment Options</a><br>
+        </center>
+       </div>
+        <div class="col-sm-3">
+          <center style="text-align:center;font-family: 'Times New Roman', Times, serif;">
+            <a href="#" class="fs-2 text-light">Online Shop</a><br></center>
+            <center style="text-align: justify;margin-left: 100px;margin-top: 10px;font-family: 'Times New Roman', Times, serif;"><a href="#" class="fs-5 " style="text-decoration: none;">Bag</a><br>
+            <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Shoes</a><br>
+            <a href="#" class="fs-5 mt-2" style="text-decoration: none;">Dress</a><br>
+            <a href="#" class="fs-5 mt-2 " style="text-decoration: none;">Watch</a><br>
+          </center>
+        </div>
+        <div class="col-sm-3">
+          <center style="font-family: 'Times New Roman', Times, serif;">
+            <a href="#" class="fs-2 text-light">Follow Us</a><br></center>
+            <center>
+              <i class="fa-brands fa-facebook mx-2" style="color: white;"></i>
+              <i class="fa-brands fa-twitter mx-2" style="color: white;"></i>
+              <i class="fa-brands fa-instagram mx-2" style="color: white;"></i>
+              <i class="fa-brands fa-whatsapp mx-2" style="color: white;"></i>
+            </center>
+        </div>
+      </div>
+      <!-- end footer -->
+    </div>
+</body>
+</html>

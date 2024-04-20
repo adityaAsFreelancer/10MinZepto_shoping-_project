@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .fs
+    {
+        font-size:16px;
+    }
+</style>
+<div class="row bg-mycolor mt-1">
+    <div class="col-sm-12" style="font-family: 'Times New Roman', Times, serif;">
+        <h1 class="text-center">Our<b class="text-light">Cart<i class="fa-solid fa-phone-square text-light-emphasis"></i></b></h1>
+    </div>
+</div>
+{% if not request.session.user %}
+<script>
+    alert('you have login first ');
+    location.href="/user/login";
+</script>
+{% endif %}
+<div class="row pt-2 bg-dark">
+    <div class="col-sm-12 mx-auto" style="width:600px">
+            <!-- start cart items -->
+            {% for i in cartdata %}
+            <div class="card mb-3" style="width: 800px;">
+                <div class="row g-0">
+                  <div class="col-md-2">
+                    <img src="/{{i.product_picture}}" class="img-fluid rounded-start h-100 w-100" alt="...">
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                        <tr>
+                            <th class="fs">Cart Id</th>
+                            <th class="fs">Product</th>
+                            <th class="fs">Quantity</th>
+                            <th class="fs">price</th>
+                            <th class="fs">Total price</th>
+                            <th class="fs">Added Date</th>
+                            <th class="fs">cancel</th>
+                        </tr>
+                        <tr>
+                            <td><b>ZEPTO23{{i.id}}</b></td>
+                            <td><b>{{i.product_name}}</b></td>
+                            <td><b>{{i.quantity}}</b></td>
+                            <td><b>{{i.price}}</b></td>
+                            <td><b>{{i.total_price}}</b></td>
+                            <td><b>{{i.added_date}}</b></td>
+                            <td><a href="/user/cartitems?cid={{i.id}}" class="bg-mycolor text-light btn">Remove <i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- end cart items -->
+            {% endfor %}
+            <a href="/user/myorders?msg=1" class="bg-mycolor text-light btn py-2 mb-2">CheckOut <b class="text-dark">all</b></a>
+    </div>
+</div>
+{% endblock %}
